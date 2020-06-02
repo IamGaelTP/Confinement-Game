@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Selectable
+  - PuzzleChest
+  - KeyItem
+  - PuzzleSafe
+  - SwitchSpawn
+  - SwitchPiano
+  - SwitchLiving
+  - SwitchKitchen
+  - SwitchKids
   layers:
   - Default
   - TransparentFX

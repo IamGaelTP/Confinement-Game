@@ -7,12 +7,12 @@ public class FPSController : MonoBehaviour
 
     CharacterController characterController;
 
-    [Header("Player Settings")]
+    [Header("Player Settings")] //Movement
     public float walkSpeed = 6.0f;
     public float gravity = 20.0f;
     Vector3 move = Vector3.zero;
 
-    [Header("Camera Settings")]
+    [Header("Camera Settings")] //Camera
     public Camera cam;
     public float mouseHorizontal = 3.0f;
     public float mouseVertical = 2.0f;
@@ -43,7 +43,6 @@ public class FPSController : MonoBehaviour
         cam.transform.localEulerAngles = new Vector3(-v_mouse, 0, 0); //Vertical
         transform.Rotate(0, h_mouse, 0); //Horizontal
 
-
         //Movement
         if (characterController.isGrounded)
         {
@@ -56,4 +55,6 @@ public class FPSController : MonoBehaviour
 
         characterController.Move(move * Time.deltaTime);
     }
+
+
 }

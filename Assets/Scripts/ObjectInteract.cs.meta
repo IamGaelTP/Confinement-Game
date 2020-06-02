@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5550bd775e945d447ba4685a4966b48a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - closedChest: {instanceID: 0}
+  - openedChest: {instanceID: 0}
+  - codePanel: {instanceID: 0}
+  - closedSafe: {instanceID: 0}
+  - openedSafe: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

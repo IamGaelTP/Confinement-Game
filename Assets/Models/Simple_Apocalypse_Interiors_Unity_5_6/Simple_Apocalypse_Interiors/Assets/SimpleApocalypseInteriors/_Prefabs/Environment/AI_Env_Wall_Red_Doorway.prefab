@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3333758}
   - component: {fileID: 2359518}
   - component: {fileID: -3799335032162589035}
+  - component: {fileID: 3294266819220986157}
+  - component: {fileID: 257027118119617576}
   m_Layer: 0
   m_Name: AI_Env_Wall_Red_Doorway
   m_TagString: Untagged
@@ -89,5 +91,31 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 4.6851273, z: 0.088493586}
-  m_Center: {x: -2.499998, y: 2.0719004, z: 0.010628104}
+  m_Size: {x: 1.5046602, y: 4.685127, z: 0.088493586}
+  m_Center: {x: -0.7523279, y: 2.0719004, z: 0.010628104}
+--- !u!65 &3294266819220986157
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.0000014, y: 0.66619784, z: 0.08849361}
+  m_Center: {x: -2.4999986, y: 4.0813646, z: 0.010628108}
+--- !u!65 &257027118119617576
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4933065, y: 4.685127, z: 0.08849361}
+  m_Center: {x: -4.2533464, y: 2.0719004, z: 0.010628108}
