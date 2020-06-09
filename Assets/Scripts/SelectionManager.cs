@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -11,25 +9,48 @@ public class SelectionManager : MonoBehaviour
     [Header("Items")] //Items
     [SerializeField] private string selectableTag = "Selectable"; //Another Items
     public static bool isSelected = false;
-    [SerializeField] private string keyItemTag = "KeyItem"; //Another Items
-    public static bool keySelected = false;
+    [SerializeField] private string listEndItemTag = "ListEndItem"; //List item of the end puzzle
+    public static bool listEndItemSelected = false;
+    [SerializeField] private string keyChestTag = "KeyChest"; //Key for Chest
+    public static bool keyChestSelected = false;
+    [SerializeField] private string keyCalabTag = "KeyCalab"; //Key for Calabozo Door
+    public static bool keyCalabSelected = false;
+    [SerializeField] private string medkitItemTag = "MedkitItem"; //Medkit for End Puzzle
+    public static bool medkitItemSelected = false;
+    [SerializeField] private string teddyOneItemTag = "TeddyItemOne"; //Teddy bear for End Puzzle
+    public static bool teddyOneItemSelected = false;
+    [SerializeField] private string teddyTwoItemTag = "TeddyItemTwo"; //Teddy bear for End Puzzle
+    public static bool teddyTwoItemSelected = false;
+    [SerializeField] private string cruzItemTag = "CruzItem"; //Cross for End Puzzle
+    public static bool cruzItemSelected = false;
+    [SerializeField] private string whiskyItemTag = "WhiskyItem"; //Whisky for End Puzzle
+    public static bool whiskyItemSelected = false;
+    [SerializeField] private string gameItemTag = "GameItem"; //Game cartridge Cartucho for End Puzzle
+    public static bool gameItemSelected = false;
 
     [Header("Puzzles")] //Puzzles
-    [SerializeField] private string puzzleChestTag = "PuzzleChest"; //CHEST PUZZLE
+    [SerializeField] private string puzzleChestTag = "PuzzleChest"; //Chest Puzzle
     public static bool puzzleChestSelected = false;
-    [SerializeField] private string puzzleSafeTag = "PuzzleSafe"; //CHEST PUZZLE
+    [SerializeField] private string puzzleCalabTag = "PuzzleCalab"; //Chest Puzzle
+    public static bool puzzleCalabSelected = false;
+    [SerializeField] private string puzzleSafeTag = "PuzzleSafe"; //Safe Puzzle
     public static bool puzzleSafeSelected = false;
+    [SerializeField] private string postItSafeTag = "PostItSafe"; //Safe Puzzle
+    public static bool postItSafeSelected = false;
+    [SerializeField] private string puzzleJigsawOneTag = "PuzzleJigsawOne"; //Jigsaw Puzzle
+    public static bool puzzleJigsawOneSelected = false;
+
 
     [Header("Switches")] //Light Switch
     [SerializeField] private string switchSpawnTag = "SwitchSpawn"; //Spawn Switch
     public static bool switchSpawnSelected = false;
-    [SerializeField] private string switchPianoTag = "SwitchPiano"; //Spawn Switch
+    [SerializeField] private string switchPianoTag = "SwitchPiano"; //Living Switch
     public static bool switchPianoSelected = false;
-    [SerializeField] private string switchKitchenTag = "SwitchKitchen"; //Spawn Switch
+    [SerializeField] private string switchKitchenTag = "SwitchKitchen"; //Kitchen Switch
     public static bool switchKitchenSelected = false;
-    [SerializeField] private string switchLivingTag = "SwitchLiving"; //Spawn Switch
+    [SerializeField] private string switchLivingTag = "SwitchLiving"; //Living Switch
     public static bool switchLivingSelected = false;
-    [SerializeField] private string switchKidsTag = "SwitchKids"; //Spawn Switch
+    [SerializeField] private string switchKidsTag = "SwitchKids"; //Kids Switch
     public static bool switchKidsSelected = false;
 
 
@@ -51,22 +72,36 @@ public class SelectionManager : MonoBehaviour
             selectionRenderer.material = defaultMaterial;
             _selection = null;
             isSelected = false;
-            keySelected = false;
+            listEndItemSelected = false;
+            keyChestSelected = false;
+            keyCalabSelected = false;
+            medkitItemSelected = false;
+            teddyOneItemSelected = false;
+            teddyTwoItemSelected = false;
+            cruzItemSelected = false;
+            whiskyItemSelected = false;
             puzzleChestSelected = false;
             puzzleSafeSelected = false;
+            postItSafeSelected = false;
+            puzzleJigsawOneSelected = false;
+            puzzleCalabSelected = false;
             switchSpawnSelected = false;
             switchPianoSelected = false;
             switchKitchenSelected = false;
             switchLivingSelected = false;
             switchKidsSelected = false;
         }
+
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, 3))
         {
             //Selected
             var selection = hit.transform;
+
+            /*---------------       Items     ---------------*/
+
             //Items selected
             if (selection.CompareTag(selectableTag))
             {
@@ -79,17 +114,127 @@ public class SelectionManager : MonoBehaviour
                 _selection = selection;
             }
 
-            //Key Item Selected
-            if (selection.CompareTag(keyItemTag))
+            //End List Selected
+            if (selection.CompareTag(listEndItemTag))
             {
                 var selectionRenderer = selection.GetComponent<Renderer>();
                 if (selectionRenderer != null)
                 {
                     selectionRenderer.material = highlightMaterial;
-                    keySelected = true;
+                    listEndItemSelected = true;
                 }
                 _selection = selection;
             }
+
+            //Post it Safe Selected
+            if (selection.CompareTag(postItSafeTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    postItSafeSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Key Chest Selected
+            if (selection.CompareTag(keyChestTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    keyChestSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Key Calab Selected
+            if (selection.CompareTag(keyCalabTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    keyCalabSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Medkit Selected
+            if (selection.CompareTag(medkitItemTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    medkitItemSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Teddy One Selected
+            if (selection.CompareTag(teddyOneItemTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    teddyOneItemSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Teddy Two Selected
+            if (selection.CompareTag(teddyTwoItemTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    teddyTwoItemSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Cruz Selected
+            if (selection.CompareTag(cruzItemTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    cruzItemSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Whsky Bottle Selected
+            if (selection.CompareTag(whiskyItemTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    whiskyItemSelected = true;
+                }
+                _selection = selection;
+            }
+            
+            //Game Cartridge Selected
+            if (selection.CompareTag(gameItemTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    gameItemSelected = true;
+                }
+                _selection = selection;
+            }
+
+            /*---------------       Puzzles     ---------------*/
 
             //Puzzle Chest Selected
             if (selection.CompareTag(puzzleChestTag))
@@ -114,6 +259,32 @@ public class SelectionManager : MonoBehaviour
                 }
                 _selection = selection;
             }
+
+            //Puzzle Door Calab Selected
+            if (selection.CompareTag(puzzleCalabTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    puzzleCalabSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Puzzle JigsawOne Selected
+            if (selection.CompareTag(puzzleJigsawOneTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    puzzleJigsawOneSelected = true;
+                }
+                _selection = selection;
+            }
+
+            /*---------------       Switches     ---------------*/
 
             //Switch Spawn Selected
             if (selection.CompareTag(switchSpawnTag))

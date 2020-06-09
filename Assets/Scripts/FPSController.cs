@@ -19,6 +19,8 @@ public class FPSController : MonoBehaviour
     public float minRotation = -65.0f;
     public float maxRotation = 60.0f;
     float h_mouse, v_mouse;
+    public static bool lockRotation = false;
+    public static bool lockMovement = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,16 +42,34 @@ public class FPSController : MonoBehaviour
         v_mouse = Mathf.Clamp(v_mouse, minRotation, maxRotation);
 
         //Rotate Camera
-        cam.transform.localEulerAngles = new Vector3(-v_mouse, 0, 0); //Vertical
-        transform.Rotate(0, h_mouse, 0); //Horizontal
-
+        if (!lockRotation)
+        {
+            cam.transform.localEulerAngles = new Vector3(-v_mouse, 0, 0); //Vertical
+            transform.Rotate(0, h_mouse, 0); //Horizontal
+        }
+        else if (lockRotation)
+        {
+            cam.transform.localEulerAngles = new Vector3(0, 0, 0); //Vertical
+            transform.Rotate(0, 0, 0); //Horizontal
+        }
         //Movement
         if (characterController.isGrounded)
         {
-            //Local Position
-            move = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            //World Position
-            move = transform.TransformDirection(move) * walkSpeed;
+            if (!lockMovement)
+            {
+                //Local Position
+                move = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+                //World Position
+                move = transform.TransformDirection(move) * walkSpeed;
+            }
+            else if (lockMovement)
+            {
+                //Local Position
+                move = new Vector3(0, 0.0f, 0);
+                //World Position
+                move = transform.TransformDirection(move) * 0;
+            }
+            
         }
         move.y -= gravity * Time.deltaTime;
 

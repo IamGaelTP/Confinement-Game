@@ -7,7 +7,7 @@ public class CodePanel : MonoBehaviour
 {
 
     [SerializeField]
-    Text codeText;
+    public Text codeText;
     string codeTextValue = "";
 
     // Update is called once per frame
@@ -15,15 +15,20 @@ public class CodePanel : MonoBehaviour
     {
         codeText.text = codeTextValue;
 
-        if(codeTextValue == "1234") //CORRECT CODE
+        if(codeTextValue == "1582") //CORRECT CODE
         {
-            ObjectInteract.isSafeOpened = true;
+            Invoke("WaitSeconds", 1.0f);
         }
 
-        if (codeTextValue.Length >= 4) 
+        if (codeTextValue.Length >= 4 && codeTextValue != "1234") 
         {
             codeTextValue = "";
         }
+    }
+
+    private void WaitSeconds()
+    {
+        ObjectInteract.isSafeOpened = true;
     }
 
     public void AddDigit(string digit)

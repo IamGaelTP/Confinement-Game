@@ -6,13 +6,25 @@ TagManager:
   tags:
   - Selectable
   - PuzzleChest
-  - KeyItem
   - PuzzleSafe
   - SwitchSpawn
   - SwitchPiano
   - SwitchLiving
   - SwitchKitchen
   - SwitchKids
+  - PuzzleJigsawOne
+  - JigsawOnePiece
+  - PuzzleCalab
+  - KeyChest
+  - KeyCalab
+  - MedkitItem
+  - TeddyItemOne
+  - TeddyItemTwo
+  - CruzItem
+  - WhiskyItem
+  - ListEndItem
+  - PostItSafe
+  - GameItem
   layers:
   - Default
   - TransparentFX
