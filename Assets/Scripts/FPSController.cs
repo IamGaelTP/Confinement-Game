@@ -22,6 +22,18 @@ public class FPSController : MonoBehaviour
     public static bool lockRotation = false;
     public static bool lockMovement = false;
 
+    [Header("Intro Text")] //Camera
+    public GameObject canvasText;
+    public GameObject textOne;
+    public GameObject textTwo;
+
+    void Awake()
+    {
+        canvasText.SetActive(false);
+        textOne.SetActive(false);
+        textTwo.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +41,9 @@ public class FPSController : MonoBehaviour
 
         //Block cursor
         Cursor.lockState = CursorLockMode.Locked;
+
+        //Intro Text
+        Invoke("IntroText", 1.0f);
 
     }
 
@@ -61,6 +76,7 @@ public class FPSController : MonoBehaviour
                 move = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
                 //World Position
                 move = transform.TransformDirection(move) * walkSpeed;
+
             }
             else if (lockMovement)
             {
@@ -76,5 +92,43 @@ public class FPSController : MonoBehaviour
         characterController.Move(move * Time.deltaTime);
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        //Teleport to EndRoom
+        if (collision.gameObject.tag == "EndExit")
+        {
+            Application.Quit();
+        }
+    }
+
+    void IntroText()
+    {
+        canvasText.SetActive(true);
+        textOne.SetActive(true);
+        textTwo.SetActive(false);
+        //Disbale Text
+        Invoke("DisableTextOne", 2.0f);
+        //Intro Text Two
+        Invoke("IntroTextTwo", 2.0f);
+
+    }
+
+    void IntroTextTwo()
+    {
+        textTwo.SetActive(true);
+        //Disbale Text
+        Invoke("DisableTextTwo", 3.0f);
+    }
+
+    void DisableTextOne()
+    {
+        textOne.SetActive(false);
+    }
+
+    void DisableTextTwo()
+    {
+        textTwo.SetActive(false);
+        canvasText.SetActive(false);
+    }
 
 }

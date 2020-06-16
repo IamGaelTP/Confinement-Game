@@ -25,6 +25,16 @@ TagManager:
   - ListEndItem
   - PostItSafe
   - GameItem
+  - PuzzleGunRoom
+  - PuzzleEndRoom
+  - SwitchBathroom
+  - LampSpawnOne
+  - LampSpawnTwo
+  - LampLibrary
+  - LampKidsOne
+  - LampKidsTwo
+  - Teleport
+  - EndExit
   layers:
   - Default
   - TransparentFX

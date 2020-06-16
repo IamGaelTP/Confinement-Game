@@ -39,11 +39,17 @@ public class SelectionManager : MonoBehaviour
     public static bool postItSafeSelected = false;
     [SerializeField] private string puzzleJigsawOneTag = "PuzzleJigsawOne"; //Jigsaw Puzzle
     public static bool puzzleJigsawOneSelected = false;
+    [SerializeField] private string puzzleGunRoomTag = "PuzzleGunRoom"; //Puzzle GunRoom
+    public static bool puzzleGunRoomSelected = false;
+    [SerializeField] private string puzzleEndRoomTag = "PuzzleEndRoom"; //Puzzle GunRoom
+    public static bool puzzleEndRoomSelected = false;
 
 
     [Header("Switches")] //Light Switch
     [SerializeField] private string switchSpawnTag = "SwitchSpawn"; //Spawn Switch
     public static bool switchSpawnSelected = false;
+    [SerializeField] private string switchBathroomTag = "SwitchBathroom"; //Spawn Nathroom Switch
+    public static bool switchBathroomSelected = false;
     [SerializeField] private string switchPianoTag = "SwitchPiano"; //Living Switch
     public static bool switchPianoSelected = false;
     [SerializeField] private string switchKitchenTag = "SwitchKitchen"; //Kitchen Switch
@@ -52,6 +58,18 @@ public class SelectionManager : MonoBehaviour
     public static bool switchLivingSelected = false;
     [SerializeField] private string switchKidsTag = "SwitchKids"; //Kids Switch
     public static bool switchKidsSelected = false;
+
+    [Header("Switches")] //Light Lamps
+    [SerializeField] private string lampSpawnOneTag = "LampSpawnOne"; //Spawn Lamp One
+    public static bool lampSpawnOneSelected = false;
+    [SerializeField] private string lampSpawnTwoTag = "LampSpawnTwo"; //Spawn Lamp Two
+    public static bool lampSpawnTwoSelected = false;
+    [SerializeField] private string lampLibraryTag = "LampLibrary"; //Library Lamp
+    public static bool lampLibrarySelected = false;
+    [SerializeField] private string lampKidsOneTag = "LampKidsOne"; //Kids One Lamp
+    public static bool lampKidsOneSelected = false;
+    [SerializeField] private string lampKidsTwoTag = "LampKidsTwo"; //Kids Two Lamp
+    public static bool lampKidsTwoSelected = false;
 
 
     Transform _selection;
@@ -72,6 +90,7 @@ public class SelectionManager : MonoBehaviour
             selectionRenderer.material = defaultMaterial;
             _selection = null;
             isSelected = false;
+            //Items
             listEndItemSelected = false;
             keyChestSelected = false;
             keyCalabSelected = false;
@@ -80,16 +99,27 @@ public class SelectionManager : MonoBehaviour
             teddyTwoItemSelected = false;
             cruzItemSelected = false;
             whiskyItemSelected = false;
+            //Puzzles
             puzzleChestSelected = false;
             puzzleSafeSelected = false;
             postItSafeSelected = false;
             puzzleJigsawOneSelected = false;
             puzzleCalabSelected = false;
+            puzzleEndRoomSelected = false;
+            puzzleGunRoomSelected = false;
+            //Switches
             switchSpawnSelected = false;
+            switchBathroomSelected = false;
             switchPianoSelected = false;
             switchKitchenSelected = false;
             switchLivingSelected = false;
             switchKidsSelected = false;
+            //Lamps
+            lampSpawnOneSelected = false;
+            lampSpawnTwoSelected = false;
+            lampLibrarySelected = false;
+            lampKidsOneSelected = false;
+            lampKidsTwoSelected = false;
         }
 
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -99,6 +129,7 @@ public class SelectionManager : MonoBehaviour
         {
             //Selected
             var selection = hit.transform;
+
 
             /*---------------       Items     ---------------*/
 
@@ -234,6 +265,7 @@ public class SelectionManager : MonoBehaviour
                 _selection = selection;
             }
 
+
             /*---------------       Puzzles     ---------------*/
 
             //Puzzle Chest Selected
@@ -283,6 +315,31 @@ public class SelectionManager : MonoBehaviour
                 }
                 _selection = selection;
             }
+
+            //Puzzle Gun Room Selected
+            if (selection.CompareTag(puzzleGunRoomTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    puzzleGunRoomSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Puzzle End Room Selected
+            if (selection.CompareTag(puzzleEndRoomTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    puzzleEndRoomSelected = true;
+                }
+                _selection = selection;
+            }
+
 
             /*---------------       Switches     ---------------*/
 
@@ -345,6 +402,82 @@ public class SelectionManager : MonoBehaviour
                 }
                 _selection = selection;
             }
+
+            //Switch Bathroom Spawn Selected
+            if (selection.CompareTag(switchBathroomTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    switchBathroomSelected = true;
+                }
+                _selection = selection;
+            }
+
+
+            /*---------------       Lamps     ---------------*/
+            //Lamp One Spawn Selected
+            if (selection.CompareTag(lampSpawnOneTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    lampSpawnOneSelected = true;
+                }
+                _selection = selection;
+            }
+
+
+            //Lamp Two Spawn Selected
+            if (selection.CompareTag(lampSpawnTwoTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    lampSpawnTwoSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Lamp Library Selected
+            if (selection.CompareTag(lampLibraryTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    lampLibrarySelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Lamp Kids One Selected
+            if (selection.CompareTag(lampKidsOneTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    lampKidsOneSelected = true;
+                }
+                _selection = selection;
+            }
+
+            //Lamp Kids Two Selected
+            if (selection.CompareTag(lampKidsTwoTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                    lampKidsTwoSelected = true;
+                }
+                _selection = selection;
+            }
+
         }
     }
 }
