@@ -6,7 +6,6 @@ public class AudioManagerScript : MonoBehaviour
 {
    // public AudioManager audiosource;
 
-    public static bool startWalk = false;
     public static bool isWalking = false;
     public static bool isGrabbing = false;
     public static bool toOpenChest = false;
@@ -31,7 +30,6 @@ public class AudioManagerScript : MonoBehaviour
     public bool itemSelected = false;
 
 
-
     void Awake()
     {
         audioSource.clip = walkingSteps;
@@ -41,15 +39,14 @@ public class AudioManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject soundGameObject = new GameObject("Sound");
-        audioSource = soundGameObject.AddComponent<AudioSource>();
+        //GameObject soundGameObject = new GameObject("Sound");
+        //audioSource = soundGameObject.AddComponent<AudioSource>();
 
         //Walk
         // If a movement key started or stopped getting pressed//
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             aKeyIsBeingPressed = true;
-            //PlaySound(true);
         }
         else
         {
@@ -58,12 +55,12 @@ public class AudioManagerScript : MonoBehaviour
 
         if(aKeyIsBeingPressed == true && !audioSource.isPlaying)
         {
-            PlaySound(false);
+            PlayWalkSound();
         }
-        else if (!aKeyIsBeingPressed && audioSource.isPlaying)
+        /*else if (!aKeyIsBeingPressed && audioSource.isPlaying)
         {
             PlaySound(false);
-        }
+        }*/
 
         //Grab
         if (isGrabbing == true)
@@ -80,6 +77,7 @@ public class AudioManagerScript : MonoBehaviour
         {
             Debug.Log("NOW, IS NOT GRABBING");
             isGrabbing = false;
+            audioSource.clip = walkingSteps;
         }
 
         //Open Chest
@@ -114,8 +112,6 @@ public class AudioManagerScript : MonoBehaviour
         
     }
 
-    
-
     public void PlaySound(bool Activate)
     {
         //Grab
@@ -129,17 +125,6 @@ public class AudioManagerScript : MonoBehaviour
         }
     }
 
-    /*public void PlayWalkSound()
-    {
-        if (isWalking)
-        {
-            PlaySound(false);
-            audioSource.clip = walkingSteps;
-            PlaySound(true);
-        }
-        isWalking = false;
-    }*/
-
     public void PlayGrabSound()
     {
         PlaySound(false);
@@ -151,6 +136,13 @@ public class AudioManagerScript : MonoBehaviour
 
         Debug.Log("ITEM SELECTED: " + itemSelected);
         Debug.Log("IS GRABBING: " + isGrabbing);
+    }
+
+    public void PlayWalkSound()
+    {
+        PlaySound(false);
+        audioSource.clip = walkingSteps;
+        PlaySound(true);
     }
 
     public void PlayOpenChestSound()
